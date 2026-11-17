@@ -1,12 +1,5 @@
 import { URL_LOGIN } from '@/config';
-import {
-  ArrowRight,
-  Check,
-  Mail,
-  MapPin,
-  MessageCircle,
-  Phone,
-} from 'lucide-react';
+import { LogIn, Check, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { COMPROMISOS, CONTACTO, PASOS, SERVICIOS, hayContacto } from '../datos';
@@ -298,10 +291,10 @@ export function Llamada() {
             asChild
             size="lg"
             variant="secondary"
-            className="rounded-xl text-foreground"
+            className="group rounded-xl text-foreground"
           >
             <a href={URL_LOGIN}>
-              Ingresar al sistema <ArrowRight />
+              <LogIn className="icono-entrar" /> Ingresar al sistema
             </a>
           </Button>
         </div>

@@ -43,10 +43,10 @@
   /* Títulos editoriales de la portada. */
   --font-serif: 'Instrument Serif', ui-serif, Georgia, serif;
   --font-sans:
-    'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    'Instrument Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   /* Una sola tipografía en todo el sistema: si algún componente pide «mono», recibe Inter. */
   --font-mono:
-    'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    'Instrument Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -254,4 +254,85 @@
 }
 .hero-desfile {
   animation: hero-desfile 45s linear infinite;
+}
+
+/* Una sola familia en toda la landing: títulos en Instrument Serif (fuera de capas para
+   ganarle a font-semibold/font-bold de las secciones; esta serif solo tiene peso normal). */
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+@keyframes barra-entrar {
+  from { opacity: 0; transform: translateY(-16px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+.barra-entra {
+  animation: barra-entrar 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+
+/* Cristal estilo iOS, sin borde: el panel se adivina por el desenfoque, no por un contorno. */
+.vidrio-tenue {
+  background: linear-gradient(180deg, oklch(0.15 0.03 255 / 0.18), transparent);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.vidrio {
+  background: oklch(1 0 0 / 0.1);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  backdrop-filter: blur(18px) saturate(1.2);
+  box-shadow: 0 12px 40px -18px oklch(0.12 0.03 255 / 0.45);
+}
+.vidrio-claro {
+  background: oklch(0.99 0.002 75 / 0.72);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  backdrop-filter: blur(20px) saturate(1.4);
+  box-shadow: 0 12px 40px -20px oklch(0.2 0.02 250 / 0.25);
+}
+
+/* Enlaces del menú: raya que crece de izquierda a derecha y, al salir, se retira hacia la derecha. */
+.enlace-raya {
+  position: relative;
+}
+.enlace-raya::after {
+  content: '';
+  position: absolute;
+  left: 0.875rem;
+  right: 0.875rem;
+  bottom: 0.3rem;
+  height: 1.5px;
+  border-radius: 999px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.enlace-raya:hover::after,
+.enlace-raya:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Íconos de los botones. Iniciar sesión: el ícono «entra»; torre: emite una onda. */
+@keyframes icono-entrar {
+  0% { transform: translateX(0); }
+  40% { transform: translateX(-5px); opacity: 0; }
+  41% { transform: translateX(6px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+@keyframes icono-onda {
+  0% { transform: scale(1); filter: drop-shadow(0 0 0 currentColor); }
+  40% { transform: scale(1.18); filter: drop-shadow(0 0 6px currentColor); }
+  100% { transform: scale(1); filter: drop-shadow(0 0 0 transparent); }
+}
+.group:hover .icono-entrar,
+.group:focus-visible .icono-entrar {
+  animation: icono-entrar 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.group:hover .icono-onda,
+.group:focus-visible .icono-onda {
+  animation: icono-onda 0.8s ease-out;
 }
