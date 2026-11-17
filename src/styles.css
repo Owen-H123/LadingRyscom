@@ -40,6 +40,8 @@
 }
 
 @theme inline {
+  /* Títulos editoriales de la portada. */
+  --font-serif: 'Instrument Serif', ui-serif, Georgia, serif;
   --font-sans:
     'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   /* Una sola tipografía en todo el sistema: si algún componente pide «mono», recibe Inter. */
@@ -216,4 +218,40 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* ---------- Portada editorial ---------- */
+@keyframes hero-subir {
+  from { transform: translateY(105%); }
+  to { transform: translateY(0); }
+}
+@keyframes hero-entrar {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes hero-cortina {
+  from { clip-path: inset(100% 0 0 0 round 2rem); }
+  to { clip-path: inset(0 0 0 0 round 2rem); }
+}
+@keyframes hero-acercar {
+  from { transform: scale(1.08); }
+  to { transform: scale(1); }
+}
+@keyframes hero-desfile {
+  to { transform: translateX(-50%); }
+}
+.hero-palabra {
+  animation: hero-subir 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.hero-entra {
+  animation: hero-entrar 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.hero-cortina {
+  animation: hero-cortina 1.3s cubic-bezier(0.77, 0, 0.18, 1) 0.3s both;
+}
+.hero-acercar {
+  animation: hero-acercar 6s ease-out both;
+}
+.hero-desfile {
+  animation: hero-desfile 45s linear infinite;
 }

@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BarraSuperior } from '@/modules/landingryscom/components/barra-superior';
-import { Hero } from '@/modules/landingryscom/components/hero';
+import { HeroEditorial } from '@/modules/landingryscom/components/hero-editorial';
 import { Pie } from '@/modules/landingryscom/components/pie';
 import {
   Compromisos,
@@ -21,7 +21,7 @@ function Inicio() {
     <div className="bg-background text-foreground">
       <BarraSuperior />
       <main>
-        <Hero />
+        <HeroEditorial />
         <Servicios />
         <Proceso />
         <Evidencia />
