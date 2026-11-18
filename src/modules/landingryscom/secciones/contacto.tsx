@@ -12,7 +12,7 @@ const OTRO = 'Otro servicio';
 const OPCIONES = [...OPCIONES_COTIZACION, OTRO];
 
 const campo =
-  'w-full rounded-2xl border border-input bg-background px-4 py-3 text-base outline-none transition placeholder:text-muted-foreground/70 focus-visible:border-primary focus-visible:ring-4 focus-visible:ring-primary/15';
+  'w-full rounded-2xl border border-white/15 bg-white/[0.06] px-4 py-3.5 text-base text-white outline-none transition placeholder:text-white/40 hover:border-white/25 focus-visible:border-primary focus-visible:bg-white/[0.09] focus-visible:ring-4 focus-visible:ring-primary/20';
 
 /**
  * Contacto y cierre de la página: a la izquierda «Tu torre, en buenas manos» con el WhatsApp y las
@@ -165,17 +165,17 @@ export function Contacto() {
           <form
             onSubmit={enviar}
             noValidate
-            className="rounded-[2rem] bg-card p-6 text-card-foreground shadow-2xl shadow-black/30 md:p-8"
+            className="vidrio rounded-[2rem] border border-white/15 p-6 text-white md:p-9"
           >
-            <h3 className="text-xl font-semibold tracking-tight">
+            <h3 className="text-2xl md:text-3xl">
               Pide tu cotización
             </h3>
-            <p className="mt-1 text-sm text-muted-foreground">
+            <p className="mt-2 text-sm text-white/60">
               Se abrirá WhatsApp con tu mensaje listo para enviar.
             </p>
 
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              <label className="grid gap-1.5 text-sm font-medium">
+              <label className="grid gap-2 text-sm font-medium text-white/85">
                 Tu nombre
                 <input
                   value={nombre}
@@ -187,16 +187,16 @@ export function Contacto() {
                     campo,
                     intento &&
                       faltaNombre &&
-                      'border-destructive focus-visible:border-destructive focus-visible:ring-destructive/15',
+                      'border-red-400/70 focus-visible:border-red-400 focus-visible:ring-red-400/20',
                   )}
                 />
                 {intento && faltaNombre && (
-                  <span role="alert" className="text-xs font-normal text-destructive">
+                  <span role="alert" className="text-xs font-normal text-red-300">
                     Escribe tu nombre para continuar.
                   </span>
                 )}
               </label>
-              <label className="grid gap-1.5 text-sm font-medium">
+              <label className="grid gap-2 text-sm font-medium text-white/85">
                 Empresa
                 <input
                   value={empresa}
@@ -208,9 +208,9 @@ export function Contacto() {
               </label>
             </div>
 
-            <fieldset className="mt-5">
-              <legend className="text-sm font-medium">¿Qué necesitas?</legend>
-              <div className="mt-2 flex flex-wrap gap-2">
+            <fieldset className="mt-6">
+              <legend className="text-sm font-medium text-white/85">¿Qué necesitas?</legend>
+              <div className="mt-3 flex flex-wrap gap-2">
                 {OPCIONES.map((o) => (
                   <button
                     key={o}
@@ -221,8 +221,8 @@ export function Contacto() {
                     className={cn(
                       'rounded-full border px-4 py-2 text-sm transition duration-200 outline-none focus-visible:ring-4 focus-visible:ring-primary/25',
                       servicio === o
-                        ? 'border-primary bg-primary text-primary-foreground shadow-md shadow-primary/25'
-                        : 'border-input bg-background hover:border-primary/50 hover:bg-primary/5',
+                        ? 'border-primary bg-primary font-semibold text-primary-foreground shadow-lg shadow-primary/25'
+                        : 'border-white/15 bg-white/[0.06] text-white/85 hover:border-white/30 hover:bg-white/10',
                     )}
                   >
                     {o}
@@ -231,7 +231,7 @@ export function Contacto() {
               </div>
             </fieldset>
 
-            <label className="mt-5 grid gap-1.5 text-sm font-medium">
+            <label className="mt-6 grid gap-2 text-sm font-medium text-white/85">
               Cuéntanos más
               <textarea
                 value={detalle}
@@ -246,7 +246,7 @@ export function Contacto() {
             <Button
               type="submit"
               size="lg"
-              className="group mt-6 h-12 w-full rounded-full text-base"
+              className="group mt-8 h-13 w-full rounded-full text-base font-bold shadow-lg shadow-primary/25"
             >
               <IconoWhatsapp className="size-5" /> Enviar por WhatsApp
               <Send className="ml-auto size-4 opacity-60 transition-transform duration-300 group-hover:translate-x-1" />
