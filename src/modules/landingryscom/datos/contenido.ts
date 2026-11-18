@@ -31,12 +31,12 @@ export const TITULO_PORTADA = ['Mantenemos', 'lo', 'que', 'nos', 'conecta.'];
 
 /** Fotos reales de trabajos en campo, para la franja que desfila bajo la portada. */
 export const FOTOS_FRANJA = [
-  { src: '/fotos/campo-2.png', alt: 'Técnico ajustando una estructura en altura, en la sierra' },
-  { src: '/fotos/campo-5.png', alt: 'Técnico midiendo junto a torres de telecomunicaciones' },
-  { src: '/fotos/campo-1.png', alt: 'Vista desde lo alto de una torre durante un trabajo' },
-  { src: '/fotos/campo-4.png', alt: 'Técnico con traje y equipo de protección completo' },
-  { src: '/fotos/campo-3.png', alt: 'Técnico con fumigadora y equipo de protección' },
-  { src: '/fotos/campo-6.png', alt: 'Técnico subiendo a una estación con antenas' },
+  { src: '/fotos/campo-2.webp', alt: 'Técnico ajustando una estructura en altura, en la sierra' },
+  { src: '/fotos/campo-5.webp', alt: 'Técnico midiendo junto a torres de telecomunicaciones' },
+  { src: '/fotos/campo-1.webp', alt: 'Vista desde lo alto de una torre durante un trabajo' },
+  { src: '/fotos/campo-4.webp', alt: 'Técnico con traje y equipo de protección completo' },
+  { src: '/fotos/campo-3.webp', alt: 'Técnico con fumigadora y equipo de protección' },
+  { src: '/fotos/campo-6.webp', alt: 'Técnico subiendo a una estación con antenas' },
 ];
 
 /* ---------- Declaración ---------- */
@@ -61,11 +61,11 @@ export const QUE_HACEMOS = [
 /* ---------- Trabajos (carrusel) ---------- */
 
 export const TRABAJOS = [
-  { foto: '/trabajos/ajuste-equipos.jpg', titulo: 'Revisión y ajuste', texto: 'Equipos y accesorios de la torre' },
-  { foto: '/trabajos/torre-estructura.jpg', titulo: 'Mantenimiento de torres', texto: 'Preventivo y correctivo, en altura' },
-  { foto: '/trabajos/camino-al-sitio.jpg', titulo: 'Sitios nuevos', texto: 'Obras y ampliaciones, de principio a fin' },
-  { foto: '/fotos/campo-5.png', titulo: 'Logística', texto: 'Traslado de personal y materiales' },
-  { foto: '/fotos/campo-2.png', titulo: 'Cable de vida y grilletes', texto: 'Material incluido si la orden lo pide' },
+  { foto: '/trabajos/ajuste-equipos.webp', titulo: 'Revisión y ajuste', texto: 'Equipos y accesorios de la torre' },
+  { foto: '/trabajos/torre-estructura.webp', titulo: 'Mantenimiento de torres', texto: 'Preventivo y correctivo, en altura' },
+  { foto: '/trabajos/camino-al-sitio.webp', titulo: 'Sitios nuevos', texto: 'Obras y ampliaciones, de principio a fin' },
+  { foto: '/fotos/campo-5.webp', titulo: 'Logística', texto: 'Traslado de personal y materiales' },
+  { foto: '/fotos/campo-2.webp', titulo: 'Cable de vida y grilletes', texto: 'Material incluido si la orden lo pide' },
 ];
 
 /* ---------- Contacto ---------- */

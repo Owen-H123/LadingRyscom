@@ -85,7 +85,7 @@ export function Trabajos() {
       onFocus={() => setPausado(true)}
       onBlur={() => setPausado(false)}
     >
-      <FondoFundido src="/trabajos/torre-trabajo-en-altura.jpg" brillo={0.32} />
+      <FondoFundido src="/trabajos/torre-trabajo-en-altura.webp" brillo={0.32} />
 
       <div className={CONTENEDOR}>
         <h2 data-split className="text-5xl md:text-7xl">

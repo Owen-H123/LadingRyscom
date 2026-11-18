@@ -39,7 +39,7 @@ export function Declaracion() {
 
   return (
     <section ref={ref} className="relative isolate overflow-hidden py-24 md:py-36">
-      <FondoFundido src="/trabajos/torre-estructura.jpg" brillo={0.4} />
+      <FondoFundido src="/trabajos/torre-estructura.webp" brillo={0.4} />
       <div className={cn(CONTENEDOR, 'grid items-center gap-14 lg:grid-cols-[1.618fr_1fr]')}>
         <p
           data-frase
@@ -56,13 +56,13 @@ export function Declaracion() {
         <div className="relative mx-auto h-[26rem] w-full max-w-md md:h-[32rem]">
           <Marco
             data-foto
-            src="/fotos/campo-4.png"
+            src="/fotos/campo-4.webp"
             alt="Técnico con traje y equipo de protección completo"
             className="absolute top-0 left-0 h-[72%] w-[64%] -rotate-[5deg]"
           />
           <Marco
             data-foto
-            src="/fotos/campo-2.png"
+            src="/fotos/campo-2.webp"
             alt="Técnico ajustando una estructura en altura"
             className="absolute right-0 bottom-0 h-[62%] w-[58%] rotate-[6deg]"
           />

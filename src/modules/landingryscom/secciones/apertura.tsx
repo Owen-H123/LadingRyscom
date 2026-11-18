@@ -22,7 +22,7 @@ export function Apertura() {
       aria-label="Todo pasa por una torre"
       className="relative isolate overflow-hidden bg-black py-24 text-center md:py-32"
     >
-      <FondoFundido src="/fotos/hero.png" brillo={0.3} />
+      <FondoFundido src="/fotos/hero.webp" brillo={0.3} />
       <p className="text-[3.6rem] leading-none font-extrabold tracking-[-0.05em] sm:text-7xl md:text-[7.5rem]">
         <span data-golpe className="inline-block">
           Señal.

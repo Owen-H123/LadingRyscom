@@ -25,7 +25,7 @@ export function HeroEditorial() {
           className="absolute inset-x-0 -top-[12%] h-[124%]"
         >
           <img
-            src="/fotos/hero.png"
+            src="/fotos/hero.webp"
             alt="Técnico de telecomunicaciones trabajando al pie de una torre con antenas"
             fetchPriority="high"
             className="hero-acercar size-full object-cover object-[72%_50%]"

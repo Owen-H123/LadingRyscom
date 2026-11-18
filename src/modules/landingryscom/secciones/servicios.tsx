@@ -34,7 +34,7 @@ export function Servicios() {
       id="servicios"
       className="relative isolate scroll-mt-20 overflow-hidden py-24 md:py-36"
     >
-      <FondoFundido src="/trabajos/ajuste-equipos.jpg" brillo={0.4} />
+      <FondoFundido src="/trabajos/ajuste-equipos.webp" brillo={0.4} />
       <div className={CONTENEDOR}>
         <div className="max-w-2xl">
           <h2 data-split className="text-5xl md:text-7xl">
