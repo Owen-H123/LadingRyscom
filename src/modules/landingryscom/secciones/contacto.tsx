@@ -104,11 +104,11 @@ export function Contacto() {
                 href={enlaceWhatsapp('Hola, quisiera cotizar un mantenimiento.')}
                 target="_blank"
                 rel="noreferrer"
-                aria-label={`Escribir por WhatsApp al ${CONTACTO.telefono || CONTACTO.whatsapp}`}
+                aria-label="Contáctanos por WhatsApp"
                 className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#25d366] px-7 py-4 text-2xl font-bold text-[#052e16] shadow-[0_20px_70px_rgba(37,211,102,.45),inset_0_2px_0_rgba(255,255,255,.5)] transition-[filter] hover:brightness-110 md:text-3xl"
               >
                 <IconoWhatsapp className="size-8 md:size-9" />
-                {CONTACTO.telefono || `+${CONTACTO.whatsapp}`}
+                Contáctanos
               </a>
             </Revelar>
           )}

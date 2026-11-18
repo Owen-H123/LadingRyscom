@@ -10,8 +10,8 @@ export const LEMA = 'Mantenemos lo que nos conecta.';
  * (también el enlace «Contacto» del menú).
  */
 export const CONTACTO = {
-  telefono: '904 075 636',
-  whatsapp: '51904075636', // solo dígitos con código de país
+  telefono: '902 159 807',
+  whatsapp: '51902159807', // solo dígitos con código de país
   correo: '',
   direccion: '',
 };
