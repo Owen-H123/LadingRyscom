@@ -1,6 +1,7 @@
 import { LogIn, RadioTower } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { URL_LOGIN } from '@/config';
+import { Costura } from '../componentes/fondos';
 import {
   FOTOS_FRANJA as FOTOS,
   TITULO_PORTADA as TITULO,
@@ -33,7 +34,8 @@ export function HeroEditorial() {
         {/* Velo: oscuro abajo y a la izquierda, donde va el texto; deja ver al técnico y la torre. */}
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,oklch(0.14_0.03_255/0.9),oklch(0.14_0.03_255/0.35)_50%,oklch(0.14_0.03_255/0.15))]" />
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,oklch(0.14_0.03_255/0.6),transparent_60%)]" />
-        <div className="pointer-events-none absolute inset-x-0 -bottom-px h-1/4 bg-[linear-gradient(to_top,#050f1c,#050f1c_8%,rgba(5,15,28,0))]" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-[linear-gradient(to_top,#050f1c,#050f1c_8%,rgba(5,15,28,0))]" />
+        <Costura lado="abajo" />
 
         {/*
           Composición áurea (φ ≈ 1.618):
@@ -111,7 +113,7 @@ export function HeroEditorial() {
 
       {/* Franja de fotos que desfila sin fin (la lista va duplicada para que el bucle no salte). */}
       <div
-        className="overflow-hidden bg-[#050f1c] py-6 md:py-8"
+        className="relative z-[1] overflow-hidden bg-[#050f1c] py-6 md:py-8"
         aria-label="Fotos de trabajos en campo"
       >
         <div className="hero-desfile flex w-max gap-3 hover:[animation-play-state:paused]">

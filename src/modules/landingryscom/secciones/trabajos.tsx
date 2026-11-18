@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap, sinMovimiento } from '@/lib/gsap';
 import { cn } from '@/lib/utils';
 import { CONTENEDOR } from '../componentes/estilos';
-import { Fundido } from '../componentes/fondos';
+import { FondoFundido } from '../componentes/fondos';
 import { Naranja } from '../componentes/texto';
 import { TRABAJOS } from '../datos/contenido';
 import { useAnimacion } from '../hooks/use-animacion';
@@ -85,15 +85,7 @@ export function Trabajos() {
       onFocus={() => setPausado(true)}
       onBlur={() => setPausado(false)}
     >
-      <img
-        aria-hidden
-        src="/trabajos/torre-trabajo-en-altura.jpg"
-        alt=""
-        loading="lazy"
-        className="absolute inset-0 -z-20 size-full object-cover"
-      />
-      <div aria-hidden className="absolute inset-0 -z-10 bg-[rgba(7,26,47,.82)] backdrop-blur-[30px]" />
-      <Fundido />
+      <FondoFundido src="/trabajos/torre-trabajo-en-altura.jpg" brillo={0.32} />
 
       <div className={CONTENEDOR}>
         <h2 data-split className="text-5xl md:text-7xl">
