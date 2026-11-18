@@ -14,8 +14,8 @@
   --card-foreground: oklch(0.2 0.01 60);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.2 0.01 60);
-  --primary: oklch(0.66 0.19 45);
-  --primary-foreground: oklch(0.99 0 0);
+  --primary: #ffa31a;
+  --primary-foreground: #071a2f;
   --secondary: oklch(0.96 0.005 75);
   --secondary-foreground: oklch(0.25 0.01 60);
   --muted: oklch(0.96 0.005 75);
@@ -41,9 +41,8 @@
 
 @theme inline {
   /* Títulos editoriales de la portada. */
-  --font-serif: 'Instrument Serif', ui-serif, Georgia, serif;
-  --font-sans:
-    'Instrument Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif: 'Inter', -apple-system, 'SF Pro Display', sans-serif;
+  --font-sans: 'Inter', -apple-system, 'SF Pro Display', sans-serif;
   /* Una sola tipografía en todo el sistema: si algún componente pide «mono», recibe Inter. */
   --font-mono:
     'Instrument Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -256,14 +255,14 @@
   animation: hero-desfile 45s linear infinite;
 }
 
-/* Una sola familia en toda la landing: títulos en Instrument Serif (fuera de capas para
-   ganarle a font-semibold/font-bold de las secciones; esta serif solo tiene peso normal). */
+/* Títulos como en el video: Inter muy gruesa y apretada (fuera de capas para ganarle a
+   font-semibold/font-bold de las secciones). */
 h1,
 h2,
 h3 {
   font-family: var(--font-serif);
-  font-weight: 400;
-  letter-spacing: -0.01em;
+  font-weight: 800;
+  letter-spacing: -0.045em;
 }
 
 @keyframes barra-entrar {
@@ -335,4 +334,10 @@ h3 {
 .group:hover .icono-onda,
 .group:focus-visible .icono-onda {
   animation: icono-onda 0.8s ease-out;
+}
+
+/* Fondo de toda la landing: azul noche, el mismo con el que se funden las secciones. */
+html,
+body {
+  background-color: #050f1c;
 }

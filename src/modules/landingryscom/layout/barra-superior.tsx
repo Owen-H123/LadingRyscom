@@ -1,9 +1,9 @@
-import { LogIn, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { URL_LOGIN } from '@/config';
 import { cn } from '@/lib/utils';
-import { ENLACES_MENU } from '../datos';
+import { ENLACES_MENU } from '../datos/contenido';
+import { MenuIngreso } from './menu-ingreso';
 
 /**
  * Barra de cristal sin borde, estilo iOS.
@@ -14,19 +14,17 @@ import { ENLACES_MENU } from '../datos';
 export function BarraSuperior() {
   const [abierto, setAbierto] = useState(false);
   const [movido, setMovido] = useState(false);
-  const [bajo, setBajo] = useState(false);
 
   useEffect(() => {
     const revisar = () => {
       setMovido(window.scrollY > 24);
-      setBajo(window.scrollY > window.innerHeight * 0.6);
     };
     revisar();
     window.addEventListener('scroll', revisar, { passive: true });
     return () => window.removeEventListener('scroll', revisar);
   }, []);
 
-  const claro = bajo || abierto;
+  const claro = abierto;
   const compacta = movido || abierto;
 
   return (
@@ -60,12 +58,18 @@ export function BarraSuperior() {
           <a
             href="#inicio"
             aria-label="RYSCOM, ir al inicio"
-            className="rounded-[0.9rem] bg-white/85 px-2 py-1 shadow-[inset_0_1px_0_oklch(1_0_0/0.9)]"
+            className="rounded-lg px-1 py-1 outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
           >
+            {/* El logo ya es transparente: va sin caja. Sobre la foto, un contorno blanco fino
+                lo separa del fondo (las letras son azul oscuro); sobre el cristal claro no hace falta. */}
             <img
               src="/ryscom-logo.png"
               alt="RYSCOM · Mantenimiento y Construcción"
-              className="h-8 w-auto"
+              className={cn(
+                'h-9 w-auto transition-[filter] duration-500 md:h-10',
+                !claro &&
+                  '[filter:drop-shadow(0_0_1px_white)_drop-shadow(0_0_2px_white)_drop-shadow(0_0_5px_oklch(1_0_0/0.55))]',
+              )}
             />
           </a>
 
@@ -90,11 +94,7 @@ export function BarraSuperior() {
           </nav>
 
           <div className="flex items-center gap-1.5">
-            <Button asChild size="sm" className="group h-10 rounded-full px-4">
-              <a href={URL_LOGIN}>
-                <LogIn className="icono-entrar" /> Ingresar
-              </a>
-            </Button>
+            <MenuIngreso claro={claro} />
             <Button
               variant="ghost"
               size="icon"

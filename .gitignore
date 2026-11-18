@@ -3,3 +3,6 @@ dist
 .env
 .env.*
 !.env.example
+
+# Fotos originales (sin optimizar); las de la página están en public/trabajos
+iamges/

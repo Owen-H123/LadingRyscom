@@ -1,10 +1,10 @@
 import { URL_LOGIN } from '@/config';
-import { CONTACTO, ENLACES_MENU, LEMA } from '../datos';
+import { CONTACTO, ENLACES_MENU, LEMA } from '../datos/contenido';
 
 /** Pie de página: marca y lema, enlaces de la página, acceso al sistema y datos de contacto. */
 export function Pie() {
   return (
-    <footer className="bg-[oklch(0.18_0.02_55)] text-white/80">
+    <footer className="bg-[#050f1c] text-white/80">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 md:grid-cols-[1.618fr_1fr_1fr] md:px-6">
         <div>
           {/* El logo tiene fondo transparente: va dentro de un cuadro blanco para que se lea. */}

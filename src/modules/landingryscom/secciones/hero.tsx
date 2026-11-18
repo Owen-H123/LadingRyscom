@@ -1,36 +1,11 @@
 import { LogIn, RadioTower } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { URL_LOGIN } from '@/config';
+import {
+  FOTOS_FRANJA as FOTOS,
+  TITULO_PORTADA as TITULO,
+} from '../datos/contenido';
 
-/** Fotos reales de trabajos en campo, para la franja que desfila. */
-const FOTOS = [
-  {
-    src: '/fotos/campo-2.png',
-    alt: 'Técnico ajustando una estructura en altura, en la sierra',
-  },
-  {
-    src: '/fotos/campo-5.png',
-    alt: 'Técnico midiendo junto a torres de telecomunicaciones',
-  },
-  {
-    src: '/fotos/campo-1.png',
-    alt: 'Vista desde lo alto de una torre durante un trabajo',
-  },
-  {
-    src: '/fotos/campo-4.png',
-    alt: 'Técnico con traje y equipo de protección completo',
-  },
-  {
-    src: '/fotos/campo-3.png',
-    alt: 'Técnico con fumigadora y equipo de protección',
-  },
-  {
-    src: '/fotos/campo-6.png',
-    alt: 'Técnico subiendo a una estación con antenas',
-  },
-];
-
-const TITULO = ['Mantenemos', 'lo', 'que', 'nos', 'conecta.'];
 
 /**
  * Portada a pantalla completa: una foto real con acercamiento lento, el título serif que sube
@@ -43,15 +18,22 @@ export function HeroEditorial() {
         id="inicio"
         className="relative overflow-hidden bg-[oklch(0.2_0.02_250)] text-white"
       >
-        <img
-          src="/fotos/hero.png"
-          alt="Técnico de telecomunicaciones trabajando al pie de una torre con antenas"
-          fetchPriority="high"
-          className="hero-acercar absolute inset-0 size-full object-cover object-[72%_50%]"
-        />
+        {/* La foto sobresale un 12 % por arriba y por abajo: al bajar se desplaza sin dejar huecos. */}
+        <div
+          data-parallax="9"
+          className="absolute inset-x-0 -top-[12%] h-[124%]"
+        >
+          <img
+            src="/fotos/hero.png"
+            alt="Técnico de telecomunicaciones trabajando al pie de una torre con antenas"
+            fetchPriority="high"
+            className="hero-acercar size-full object-cover object-[72%_50%]"
+          />
+        </div>
         {/* Velo: oscuro abajo y a la izquierda, donde va el texto; deja ver al técnico y la torre. */}
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,oklch(0.14_0.03_255/0.9),oklch(0.14_0.03_255/0.35)_50%,oklch(0.14_0.03_255/0.15))]" />
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,oklch(0.14_0.03_255/0.6),transparent_60%)]" />
+        <div className="pointer-events-none absolute inset-x-0 -bottom-px h-1/4 bg-[linear-gradient(to_top,#050f1c,#050f1c_8%,rgba(5,15,28,0))]" />
 
         {/*
           Composición áurea (φ ≈ 1.618):
@@ -63,7 +45,10 @@ export function HeroEditorial() {
         */}
         <div className="relative mx-auto grid min-h-dvh w-full max-w-6xl grid-rows-[38.2fr_61.8fr] px-4 md:px-6">
           <div aria-hidden />
-          <div className="grid grid-cols-1 pb-[2.618rem] md:grid-cols-[61.8fr_38.2fr] md:pb-[4.236rem]">
+          <div
+            data-hero-contenido
+            className="grid grid-cols-1 pb-[2.618rem] md:grid-cols-[61.8fr_38.2fr] md:pb-[4.236rem]"
+          >
             <div className="flex flex-col">
               <p
                 className="hero-entra text-[0.75rem] font-medium tracking-[0.236em] text-primary uppercase"
@@ -72,7 +57,7 @@ export function HeroEditorial() {
                 Telecomunicaciones · Perú
               </p>
 
-              <h1 className="mt-[1rem] text-[4.236rem] leading-[0.92] text-balance lg:text-[6.854rem]">
+              <h1 className="mt-[1rem] text-[3.4rem] leading-[0.95] text-balance sm:text-[4rem] lg:text-[5.2rem]">
                 {TITULO.map((palabra, i) => (
                   <span
                     key={palabra}
@@ -126,7 +111,7 @@ export function HeroEditorial() {
 
       {/* Franja de fotos que desfila sin fin (la lista va duplicada para que el bucle no salte). */}
       <div
-        className="overflow-hidden bg-background py-6 md:py-8"
+        className="overflow-hidden bg-[#050f1c] py-6 md:py-8"
         aria-label="Fotos de trabajos en campo"
       >
         <div className="hero-desfile flex w-max gap-3 hover:[animation-play-state:paused]">
