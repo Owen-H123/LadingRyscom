@@ -8,6 +8,7 @@ import { Apertura } from '@/modules/landingryscom/secciones/apertura';
 import { Contacto } from '@/modules/landingryscom/secciones/contacto';
 import { Declaracion } from '@/modules/landingryscom/secciones/declaracion';
 import { HeroEditorial } from '@/modules/landingryscom/secciones/hero';
+import { Nosotros } from '@/modules/landingryscom/secciones/nosotros';
 import { Servicios } from '@/modules/landingryscom/secciones/servicios';
 import { Trabajos } from '@/modules/landingryscom/secciones/trabajos';
 
@@ -19,6 +20,7 @@ function Contenido() {
       <main>
         <HeroEditorial />
         <Apertura />
+        <Nosotros />
         <Declaracion />
         <Servicios />
         <Trabajos />

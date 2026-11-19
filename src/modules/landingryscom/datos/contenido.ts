@@ -77,3 +77,15 @@ export const OPCIONES_COTIZACION = [
   'Construcción y obras',
   'Logística y desplazamiento',
 ];
+
+/* ---------- Nosotros ---------- */
+
+/** Franja naranja con el título y dos columnas de texto, seguida de una foto a todo el ancho. */
+export const NOSOTROS = {
+  titulo: 'Cuidamos lo que mantiene al Perú conectado.',
+  parrafos: [
+    'RYSCOM es una empresa de mantenimiento y construcción para torres y estaciones de telecomunicaciones: mantenimiento preventivo y correctivo, revisión de equipos, obras nuevas y ampliaciones.',
+    'Llevamos personal y materiales hasta cada sitio, trabajamos con arnés y equipo de protección completo, y entregamos cada trabajo con fotos de antes, durante y finalizado.',
+  ],
+  foto: { src: '/trabajos/camino-al-sitio.webp', alt: 'Dos técnicos de RYSCOM caminan hacia las torres en lo alto del cerro' },
+};
