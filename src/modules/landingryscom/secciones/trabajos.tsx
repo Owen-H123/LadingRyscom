@@ -13,11 +13,10 @@ const SEGUNDOS_POR_FOTO = 4;
 
 /**
  * «Hecho en campo.»: carrusel de fotos que se desliza con el dedo, con flechas y puntos, y que
- * avanza solo mientras se ve (se detiene con el mouse encima o con el foco dentro).
+ * avanza solo mientras se ve. Si se mueve a mano, espera unos segundos y sigue desde ahí.
  */
 export function Trabajos() {
   const [activo, setActivo] = useState(0);
-  const [pausado, setPausado] = useState(false);
   const [visible, setVisible] = useState(false);
   const pista = useRef<HTMLUListElement>(null);
   const ref = useAnimacion<HTMLElement>((raiz) => {
@@ -60,18 +59,18 @@ export function Trabajos() {
     const el = ref.current;
     if (!el) return;
     const observador = new IntersectionObserver(([e]) => setVisible(e.isIntersecting), {
-      threshold: 0.35,
+      threshold: 0.2,
     });
     observador.observe(el);
     return () => observador.disconnect();
   }, [ref]);
 
   useEffect(() => {
-    if (pausado || !visible || sinMovimiento()) return;
+    if (!visible || sinMovimiento()) return;
     const id = window.setTimeout(() => ir(activo + 1), SEGUNDOS_POR_FOTO * 1000);
     return () => window.clearTimeout(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activo, pausado, visible]);
+  }, [activo, visible]);
 
   const actual = TRABAJOS[activo];
 
@@ -80,10 +79,6 @@ export function Trabajos() {
       ref={ref}
       id="trabajos"
       className="relative isolate scroll-mt-20 overflow-hidden py-24 md:py-32"
-      onMouseEnter={() => setPausado(true)}
-      onMouseLeave={() => setPausado(false)}
-      onFocus={() => setPausado(true)}
-      onBlur={() => setPausado(false)}
     >
       <FondoFundido src="/trabajos/torre-trabajo-en-altura.webp" brillo={0.32} />
 
