@@ -1,24 +1,28 @@
-import { Mail, MapPin, Phone, Send } from 'lucide-react';
+import { ArrowRight, Mail, MapPin, Phone } from 'lucide-react';
 import { useState } from 'react';
 import { IconoWhatsapp } from '@/components/shared/icono-whatsapp';
-import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { CONTACTO, OPCIONES_COTIZACION, hayContacto } from '../datos/contenido';
 import { enlaceWhatsapp } from '../utils/whatsapp';
-import { Fundido } from '../componentes/fondos';
 import { Revelar } from '../componentes/revelar';
 
 const OTRO = 'Otro servicio';
 const OPCIONES = [...OPCIONES_COTIZACION, OTRO];
 
+/** Campos de contorno sobre blanco, sin caja alrededor. */
 const campo =
-  'w-full rounded-2xl border border-white/15 bg-white/[0.06] px-4 py-3.5 text-base text-white outline-none transition placeholder:text-white/40 hover:border-white/25 focus-visible:border-primary focus-visible:bg-white/[0.09] focus-visible:ring-4 focus-visible:ring-primary/20';
+  'w-full rounded-full border border-slate-300 bg-white px-5 py-3.5 text-base text-[#071a2f] outline-none transition placeholder:text-slate-400 hover:border-slate-400 focus-visible:border-primary focus-visible:ring-4 focus-visible:ring-primary/25';
+
+const etiqueta = 'grid gap-2 text-[0.95rem] font-semibold text-[#071a2f]';
+
+function Opcional() {
+  return <span className="font-normal text-slate-500">(opcional)</span>;
+}
 
 /**
- * Contacto y cierre de la página: a la izquierda «Tu torre, en buenas manos» con el WhatsApp y las
- * demás formas de comunicarse (1); a la derecha un formulario corto (1.618).
- * El formulario no usa servidor: arma el mensaje y abre WhatsApp con él ya escrito.
- * Solo aparece si hay datos de contacto en `datos.ts`.
+ * Contacto y cierre de la página, en un solo plano de color de borde a borde: a la izquierda el
+ * mensaje y los canales, a la derecha el formulario. El formulario no usa servidor: arma el
+ * mensaje y abre WhatsApp con él ya escrito. Solo aparece si hay datos de contacto.
  */
 export function Contacto() {
   const [nombre, setNombre] = useState('');
@@ -37,15 +41,20 @@ export function Contacto() {
     if (faltaNombre) return;
     const lineas = [
       `Hola, soy ${nombre.trim()}${empresa.trim() ? ` de ${empresa.trim()}` : ''}.`,
-      servicio === OTRO
-        ? 'Quisiera consultar por un servicio.'
-        : `Quisiera cotizar: ${servicio}.`,
+      servicio === OTRO ? 'Quisiera consultar por un servicio.' : `Quisiera cotizar: ${servicio}.`,
       detalle.trim(),
     ].filter(Boolean);
     window.open(enlaceWhatsapp(lineas.join('\n')), '_blank', 'noreferrer');
   };
 
-  const filas = [
+  const canales = [
+    CONTACTO.whatsapp && {
+      icono: IconoWhatsapp,
+      etiqueta: 'WhatsApp',
+      texto: 'Contáctanos',
+      href: enlaceWhatsapp('Hola, quisiera cotizar un mantenimiento.'),
+      externo: true,
+    },
     CONTACTO.telefono && {
       icono: Phone,
       etiqueta: 'Llámanos',
@@ -58,13 +67,9 @@ export function Contacto() {
       texto: CONTACTO.correo,
       href: `mailto:${CONTACTO.correo}`,
     },
-    CONTACTO.direccion && {
-      icono: MapPin,
-      etiqueta: 'Dirección',
-      texto: CONTACTO.direccion,
-    },
+    CONTACTO.direccion && { icono: MapPin, etiqueta: 'Dirección', texto: CONTACTO.direccion },
   ].filter(Boolean) as {
-    icono: typeof Phone;
+    icono: React.ComponentType<{ className?: string }>;
     etiqueta: string;
     texto: string;
     href?: string;
@@ -74,183 +79,141 @@ export function Contacto() {
   return (
     <section
       id="contacto"
-      className="relative isolate scroll-mt-16 overflow-hidden bg-[radial-gradient(circle_at_70%_40%,#0f4a86_0%,#071a2f_70%)] py-20 text-white md:py-28"
+      data-claro
+      className="relative scroll-mt-16 bg-white py-20 text-[#071a2f] md:py-32"
     >
-      {/* Resplandor de marca detrás del formulario; el fundido va encima para que no deje bordes. */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute top-1/4 -right-40 -z-10 size-[34rem] rounded-full bg-primary/20 blur-[120px]"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute bottom-1/4 -left-32 -z-10 size-[28rem] rounded-full bg-[oklch(0.5_0.14_250)]/30 blur-[120px]"
-      />
-      <Fundido />
-
-      <div className="relative mx-auto grid max-w-6xl gap-12 px-4 md:px-6 lg:grid-cols-[1fr_1.618fr] lg:gap-16">
+      <div className="mx-auto grid max-w-6xl gap-14 px-4 md:px-6 lg:grid-cols-2 lg:gap-20">
         <div>
-          <h2 data-split className="text-5xl md:text-6xl">
+          <h2 data-split className="text-5xl md:text-7xl">
             Tu torre, <br />
             <em className="text-primary not-italic">en buenas manos.</em>
           </h2>
           <Revelar retraso={200}>
-            <p className="mt-5 text-lg text-white/75">
+            <p className="mt-6 max-w-md text-lg text-slate-600 md:text-xl">
               Cuéntanos qué necesitas y te respondemos por el medio que prefieras.
             </p>
           </Revelar>
-          {CONTACTO.whatsapp && (
-            <Revelar retraso={300}>
-              <a
-                href={enlaceWhatsapp('Hola, quisiera cotizar un mantenimiento.')}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Contáctanos por WhatsApp"
-                className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#25d366] px-7 py-4 text-2xl font-bold text-[#052e16] shadow-[0_20px_70px_rgba(37,211,102,.45),inset_0_2px_0_rgba(255,255,255,.5)] transition-[filter] hover:brightness-110 md:text-3xl"
-              >
-                <IconoWhatsapp className="size-8 md:size-9" />
-                Contáctanos
-              </a>
-            </Revelar>
-          )}
-          <ul className="mt-8 space-y-3">
-            {filas.map((f, i) => {
-              const contenido = (
-                <>
-                  <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-white/10 text-white ring-1 ring-white/15 transition-colors duration-300 group-hover:bg-primary group-hover:ring-primary">
-                    <f.icono className="size-5.5" />
-                  </span>
-                  <span className="min-w-0">
-                    <span className="block text-xs tracking-[0.14em] text-white/55 uppercase">
-                      {f.etiqueta}
-                    </span>
-                    <span className="block text-lg font-medium break-words">
-                      {f.texto}
-                    </span>
-                  </span>
-                </>
-              );
-              const clase =
-                'group flex items-center gap-4 rounded-3xl border border-white/10 bg-white/[0.06] p-4 backdrop-blur-md transition duration-300';
-              return (
-                <li key={f.etiqueta}>
-                  <Revelar retraso={i * 90}>
-                    {f.href ? (
+
+          <Revelar retraso={300}>
+            <ul className="mt-12 max-w-md border-t border-slate-200">
+              {canales.map((c) => {
+                const contenido = (
+                  <>
+                    <c.icono className="text-primary size-5 shrink-0" />
+                    <span className="w-24 shrink-0 text-sm text-slate-500">{c.etiqueta}</span>
+                    <span className="min-w-0 flex-1 text-lg font-bold break-words">{c.texto}</span>
+                    {c.href && (
+                      <ArrowRight className="size-5 text-slate-400 transition duration-300 group-hover:translate-x-1 group-hover:text-primary" />
+                    )}
+                  </>
+                );
+                const clase = 'group flex items-center gap-4 border-b border-slate-200 py-5';
+                return (
+                  <li key={c.etiqueta}>
+                    {c.href ? (
                       <a
-                        href={f.href}
-                        {...(f.externo && {
-                          target: '_blank',
-                          rel: 'noreferrer',
-                        })}
-                        className={cn(
-                          clase,
-                          'hover:-translate-y-0.5 hover:bg-white/[0.12]',
-                        )}
+                        href={c.href}
+                        {...(c.externo && { target: '_blank', rel: 'noreferrer' })}
+                        aria-label={`${c.etiqueta}: ${c.texto}`}
+                        className={clase}
                       >
                         {contenido}
                       </a>
                     ) : (
                       <div className={clase}>{contenido}</div>
                     )}
-                  </Revelar>
-                </li>
-              );
-            })}
-          </ul>
-          <p className="text-primary mt-8 text-xs font-bold tracking-[0.18em] whitespace-nowrap sm:text-sm md:tracking-[0.3em]">
-            MANTENIMIENTO Y CONSTRUCCIÓN
-          </p>
+                  </li>
+                );
+              })}
+            </ul>
+          </Revelar>
         </div>
 
         <Revelar retraso={150}>
-          <form
-            onSubmit={enviar}
-            noValidate
-            className="vidrio rounded-[2rem] border border-white/15 p-6 text-white md:p-9"
-          >
-            <h3 className="text-2xl md:text-3xl">
-              Pide tu cotización
-            </h3>
-            <p className="mt-2 text-sm text-white/60">
-              Se abrirá WhatsApp con tu mensaje listo para enviar.
-            </p>
-
-            <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              <label className="grid gap-2 text-sm font-medium text-white/85">
-                Tu nombre
+          <form onSubmit={enviar} noValidate className="grid gap-7">
+            <div className="grid gap-5 sm:grid-cols-2">
+              <label className={etiqueta}>
+                Nombre y apellido
                 <input
                   value={nombre}
                   onChange={(e) => setNombre(e.target.value)}
                   autoComplete="name"
-                  placeholder="Nombre y apellido"
                   aria-invalid={intento && faltaNombre}
                   className={cn(
                     campo,
-                    intento &&
-                      faltaNombre &&
-                      'border-red-400/70 focus-visible:border-red-400 focus-visible:ring-red-400/20',
+                    intento && faltaNombre && 'border-red-500 focus-visible:border-red-500 focus-visible:ring-red-500/15',
                   )}
                 />
                 {intento && faltaNombre && (
-                  <span role="alert" className="text-xs font-normal text-red-300">
+                  <span role="alert" className="text-sm font-medium text-red-600">
                     Escribe tu nombre para continuar.
                   </span>
                 )}
               </label>
-              <label className="grid gap-2 text-sm font-medium text-white/85">
-                Empresa
+              <label className={etiqueta}>
+                <span>
+                  Empresa <Opcional />
+                </span>
                 <input
                   value={empresa}
                   onChange={(e) => setEmpresa(e.target.value)}
                   autoComplete="organization"
-                  placeholder="Opcional"
                   className={campo}
                 />
               </label>
             </div>
 
-            <fieldset className="mt-6">
-              <legend className="text-sm font-medium text-white/85">¿Qué necesitas?</legend>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {OPCIONES.map((o) => (
-                  <button
-                    key={o}
-                    type="button"
-                    role="radio"
-                    aria-checked={servicio === o}
-                    onClick={() => setServicio(o)}
-                    className={cn(
-                      'rounded-full border px-4 py-2 text-sm transition duration-200 outline-none focus-visible:ring-4 focus-visible:ring-primary/25',
-                      servicio === o
-                        ? 'border-primary bg-primary font-semibold text-primary-foreground shadow-lg shadow-primary/25'
-                        : 'border-white/15 bg-white/[0.06] text-white/85 hover:border-white/30 hover:bg-white/10',
-                    )}
-                  >
-                    {o}
-                  </button>
-                ))}
+            <fieldset>
+              <legend className={etiqueta}>¿Qué necesitas?</legend>
+              <div role="radiogroup" className="mt-3 flex flex-wrap gap-2.5">
+                {OPCIONES.map((o) => {
+                  const elegido = servicio === o;
+                  return (
+                    <button
+                      key={o}
+                      type="button"
+                      role="radio"
+                      aria-checked={elegido}
+                      onClick={() => setServicio(o)}
+                      className={cn(
+                        'rounded-full border px-4 py-2.5 text-sm font-medium transition outline-none focus-visible:ring-4 focus-visible:ring-primary/25',
+                        elegido
+                          ? 'border-primary bg-primary font-semibold text-primary-foreground'
+                          : 'border-slate-300 text-slate-700 hover:border-[#071a2f] hover:text-[#071a2f]',
+                      )}
+                    >
+                      {o}
+                    </button>
+                  );
+                })}
               </div>
             </fieldset>
 
-            <label className="mt-6 grid gap-2 text-sm font-medium text-white/85">
-              Cuéntanos más
+            <label className={etiqueta}>
+              <span>
+                Mensaje <Opcional />
+              </span>
               <textarea
                 value={detalle}
                 onChange={(e) => setDetalle(e.target.value)}
                 rows={4}
                 maxLength={500}
-                placeholder="Opcional: ubicación del sitio, tipo de trabajo, fecha que necesitas…"
-                className={cn(campo, 'resize-none')}
+                placeholder="Ubicación del sitio, tipo de trabajo, fecha que necesitas…"
+                className={cn(campo, 'resize-none rounded-[1.6rem]')}
               />
             </label>
 
-            <Button
-              type="submit"
-              size="lg"
-              className="group mt-8 h-13 w-full rounded-full text-base font-bold shadow-lg shadow-primary/25"
-            >
-              <IconoWhatsapp className="size-5" /> Enviar por WhatsApp
-              <Send className="ml-auto size-4 opacity-60 transition-transform duration-300 group-hover:translate-x-1" />
-            </Button>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+              <button
+                type="submit"
+                className="group inline-flex h-14 items-center gap-2.5 bg-primary text-primary-foreground rounded-full px-8 text-base font-bold shadow-lg shadow-primary/20 transition hover:brightness-105 focus-visible:ring-4 focus-visible:ring-primary/30 focus-visible:outline-none"
+              >
+                <IconoWhatsapp className="size-5" />
+                Enviar por WhatsApp
+                <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </button>
+              <p className="text-sm text-slate-500">Se abre tu WhatsApp con el mensaje listo.</p>
+            </div>
           </form>
         </Revelar>
       </div>

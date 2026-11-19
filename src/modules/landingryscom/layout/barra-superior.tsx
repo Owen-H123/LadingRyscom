@@ -9,22 +9,34 @@ import { MenuIngreso } from './menu-ingreso';
  * Barra de cristal sin borde, estilo iOS.
  * - Arriba: ocupa todo el ancho y casi no se nota (solo un leve desenfoque).
  * - Al bajar: se contrae hacia el centro, se separa del borde y redondea las esquinas.
- * - Pasada la portada: cristal claro con texto oscuro.
+ * - Sobre una sección clara ([data-claro]) o con el menú abierto: cristal claro con texto oscuro.
  */
 export function BarraSuperior() {
   const [abierto, setAbierto] = useState(false);
   const [movido, setMovido] = useState(false);
+  const [sobreClaro, setSobreClaro] = useState(false);
 
+  // Cada cuadro: si la barra pasa sobre una sección clara ([data-claro]), cambia a cristal claro
+  // con texto oscuro. Se mira por cuadro porque el scroll suave mueve el contenido después del scroll.
   useEffect(() => {
+    let cuadro = 0;
     const revisar = () => {
       setMovido(window.scrollY > 24);
+      const y = 40;
+      const claras = document.querySelectorAll<HTMLElement>('[data-claro]');
+      let encima = false;
+      claras.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top <= y && r.bottom >= y) encima = true;
+      });
+      setSobreClaro(encima);
+      cuadro = requestAnimationFrame(revisar);
     };
-    revisar();
-    window.addEventListener('scroll', revisar, { passive: true });
-    return () => window.removeEventListener('scroll', revisar);
+    cuadro = requestAnimationFrame(revisar);
+    return () => cancelAnimationFrame(cuadro);
   }, []);
 
-  const claro = abierto;
+  const claro = abierto || sobreClaro;
   const compacta = movido || abierto;
 
   return (
