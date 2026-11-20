@@ -6,13 +6,19 @@ import { useAnimacion } from '../hooks/use-animacion';
 /** «Señal. Datos. Voz. Todo pasa por una torre.» Las palabras entran de golpe al llegar. */
 export function Apertura() {
   const ref = useAnimacion<HTMLElement>((raiz) => {
-    gsap.from(raiz.querySelectorAll('[data-golpe]'), {
+    const golpes = raiz.querySelectorAll('[data-golpe]');
+    // will-change: el navegador escala las palabras como imagen en vez de volver a dibujar letras
+    // gigantes en cada fotograma (eso trababa la página). Se quita al terminar para que el texto
+    // quede nítido.
+    gsap.set(golpes, { willChange: 'transform, opacity' });
+    gsap.from(golpes, {
       scale: 2.4,
       opacity: 0,
       duration: 0.5,
       ease: 'power3.out',
       stagger: 0.28,
       scrollTrigger: { trigger: raiz, start: 'top 70%', once: true },
+      onComplete: () => gsap.set(golpes, { clearProps: 'willChange' }),
     });
   });
 
