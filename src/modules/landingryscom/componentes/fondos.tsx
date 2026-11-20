@@ -36,17 +36,28 @@ export function Costura({ lado }: { lado: 'arriba' | 'abajo' }) {
   );
 }
 
-/** Foto de fondo desenfocada y oscurecida, como en las escenas del video. */
+/**
+ * Foto de fondo desenfocada y oscurecida, como en las escenas del video.
+ *
+ * El desenfoque ya viene hecho en /fondos (scripts/generar-fondos.mjs): imágenes de pocos KB, una
+ * por tamaño de pantalla. Antes se aplicaba en vivo con CSS (blur 32px) y hacía pesado el scroll.
+ * Para un fondo nuevo, agrégalo a ese script y corre `pnpm generar:fondos`.
+ */
 function Fondo({ src, brillo = 0.45 }: { src: string; brillo?: number }) {
+  const nombre = src.split('/').pop()!.replace(/\.\w+$/, '');
+  const base = `/fondos/${nombre}-${Math.round(brillo * 100)}`;
   return (
-    <img
-      aria-hidden
-      src={src}
-      alt=""
-      loading="lazy"
-      style={{ filter: `blur(32px) brightness(${brillo}) saturate(1.3)` }}
-      className="absolute -inset-[8%] -z-10 size-[116%] max-w-none object-cover"
-    />
+    <picture>
+      <source media="(max-width: 767px)" srcSet={`${base}-movil.webp`} />
+      <source media="(max-width: 1279px)" srcSet={`${base}-tablet.webp`} />
+      <img
+        aria-hidden
+        src={`${base}-escritorio.webp`}
+        alt=""
+        loading="lazy"
+        className="absolute -inset-[8%] -z-10 size-[116%] max-w-none object-cover"
+      />
+    </picture>
   );
 }
 

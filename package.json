@@ -10,7 +10,8 @@
     "start": "serve dist --single --listen tcp://0.0.0.0:${PORT:-3000}",
     "typecheck": "tsc --noEmit",
     "optimizar:fotos": "node scripts/optimizar-fotos.mjs",
-    "generar:imagenes-seo": "node scripts/generar-imagenes-seo.mjs"
+    "generar:imagenes-seo": "node scripts/generar-imagenes-seo.mjs",
+    "generar:fondos": "node scripts/generar-fondos.mjs"
   },
   "dependencies": {
     "class-variance-authority": "0.7.1",
