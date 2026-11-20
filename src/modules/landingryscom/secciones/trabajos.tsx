@@ -29,10 +29,10 @@ export function Trabajos() {
     gsap.from(raiz.querySelectorAll('[data-tarjeta]'), {
       y: 40,
       opacity: 0,
-      duration: 0.9,
+      duration: 0.5,
       ease: 'power3.out',
-      stagger: 0.08,
-      scrollTrigger: { trigger: raiz, start: 'top 70%', once: true },
+      stagger: 0.05,
+      scrollTrigger: { trigger: raiz, start: 'top 85%', once: true },
     });
   });
 

@@ -13,10 +13,10 @@ export function Nosotros() {
     gsap.from(raiz.querySelectorAll('[data-columna]'), {
       y: 30,
       opacity: 0,
-      duration: 0.8,
+      duration: 0.45,
       ease: 'power3.out',
-      stagger: 0.15,
-      scrollTrigger: { trigger: raiz, start: 'top 70%', once: true },
+      stagger: 0.07,
+      scrollTrigger: { trigger: raiz, start: 'top 85%', once: true },
     });
   });
 

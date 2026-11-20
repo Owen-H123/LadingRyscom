@@ -56,7 +56,7 @@ export function HeroEditorial() {
             <div className="flex flex-col">
               <p
                 className="hero-entra text-[0.75rem] font-medium tracking-[0.236em] text-primary uppercase"
-                style={{ animationDelay: '150ms' }}
+                style={{ animationDelay: '100ms' }}
               >
                 Telecomunicaciones · Perú
               </p>
@@ -75,7 +75,7 @@ export function HeroEditorial() {
                     >
                       <span
                         className="hero-palabra inline-block"
-                        style={{ animationDelay: `${250 + i * 110}ms` }}
+                        style={{ animationDelay: `${150 + i * 70}ms` }}
                       >
                         {palabra}
                       </span>
@@ -90,7 +90,7 @@ export function HeroEditorial() {
               <div className="mt-[1.618rem] flex flex-col gap-[1.618rem] md:mt-[2.618rem]">
                 <p
                   className="hero-entra max-w-[61.8%] min-w-[17rem] text-[1.0625rem] leading-[1.618] text-white/80 md:text-[1.125rem]"
-                  style={{ animationDelay: '900ms' }}
+                  style={{ animationDelay: '500ms' }}
                 >
                   Mantenimiento y construcción para torres y estaciones de
                   telecomunicaciones, con cada trabajo documentado de principio
@@ -99,7 +99,7 @@ export function HeroEditorial() {
 
                 <div
                   className="hero-entra flex flex-wrap items-center gap-3"
-                  style={{ animationDelay: '1050ms' }}
+                  style={{ animationDelay: '600ms' }}
                 >
                   <Button asChild size="lg" className="group rounded-full px-6">
                     <a href={URL_LOGIN}>
