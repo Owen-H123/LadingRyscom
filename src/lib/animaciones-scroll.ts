@@ -64,10 +64,10 @@ export function iniciarAnimaciones(): () => void {
         onSplit: (separado) =>
           gsap.from(separado.words, {
             yPercent: 115,
-            duration: 0.55,
+            duration: 0.95,
             ease: 'power4.out',
-            stagger: 0.03,
-            scrollTrigger: { trigger: el, start: 'top 95%', once: true },
+            stagger: 0.06,
+            scrollTrigger: { trigger: el, start: 'top 88%', once: true },
           }),
       });
     });
@@ -76,7 +76,7 @@ export function iniciarAnimaciones(): () => void {
     gsap.utils.toArray<HTMLElement>('[data-barra]').forEach((el) =>
       gsap.from(el, {
         width: 0,
-        duration: 0.8,
+        duration: 1.4,
         ease: 'power3.out',
         scrollTrigger: { trigger: el, start: 'top 100%', once: true },
       }),
@@ -92,9 +92,9 @@ export function iniciarAnimaciones(): () => void {
       gsap.from(elementos, {
         scale: 0.6,
         opacity: 0,
-        duration: 0.3,
+        duration: 0.5,
         ease: 'back.out(2)',
-        stagger: 0.06,
+        stagger: 0.12,
         scrollTrigger: { trigger: grupo, start: 'top 100%', once: true },
       }),
     );

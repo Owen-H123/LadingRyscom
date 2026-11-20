@@ -9,20 +9,20 @@ import { useAnimacion } from '../hooks/use-animacion';
 /** «Todo lo que hacemos.»: los servicios en texto corto, numerados. */
 export function Servicios() {
   const ref = useAnimacion<HTMLElement>((raiz) => {
-    const disparo = { trigger: raiz.querySelector('[data-items]'), start: 'top 92%', once: true };
+    const disparo = { trigger: raiz.querySelector('[data-items]'), start: 'top 82%', once: true };
     gsap.from(raiz.querySelectorAll('[data-item]'), {
       y: 40,
       opacity: 0,
-      duration: 0.45,
+      duration: 0.8,
       ease: 'power3.out',
-      stagger: 0.05,
+      stagger: 0.1,
       scrollTrigger: disparo,
     });
     gsap.from(raiz.querySelector('[data-pildora]'), {
       y: 40,
       opacity: 0,
-      duration: 0.45,
-      delay: 0.25,
+      duration: 0.8,
+      delay: 0.6,
       ease: 'power3.out',
       scrollTrigger: disparo,
     });

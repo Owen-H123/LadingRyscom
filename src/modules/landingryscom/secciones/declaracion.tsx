@@ -29,10 +29,10 @@ export function Declaracion() {
         x: 260 + i * 120,
         rotation: i ? -10 : 10,
         opacity: 0,
-        duration: 0.6,
-        delay: i * 0.1,
+        duration: 1.2,
+        delay: i * 0.25,
         ease: 'power3.out',
-        scrollTrigger: { trigger: raiz, start: 'top 85%', once: true },
+        scrollTrigger: { trigger: raiz, start: 'top 65%', once: true },
       }),
     );
   });

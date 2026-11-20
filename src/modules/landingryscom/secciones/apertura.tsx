@@ -14,10 +14,10 @@ export function Apertura() {
     gsap.from(golpes, {
       scale: 2.4,
       opacity: 0,
-      duration: 0.35,
+      duration: 0.5,
       ease: 'power3.out',
-      stagger: 0.12,
-      scrollTrigger: { trigger: raiz, start: 'top 85%', once: true },
+      stagger: 0.28,
+      scrollTrigger: { trigger: raiz, start: 'top 70%', once: true },
       onComplete: () => gsap.set(golpes, { clearProps: 'willChange' }),
     });
   });
