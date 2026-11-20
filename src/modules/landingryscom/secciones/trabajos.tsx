@@ -107,7 +107,7 @@ export function Trabajos() {
                   : cn('scale-[.86] opacity-55', i < activo ? '-rotate-3' : 'rotate-3'),
               )}
             >
-              <img src={t.foto} alt="" loading="lazy" className="size-full object-cover" />
+              <img src={t.foto} alt={t.alt} loading="lazy" className="size-full object-cover" />
             </button>
           </li>
         ))}

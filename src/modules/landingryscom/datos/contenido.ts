@@ -60,12 +60,38 @@ export const QUE_HACEMOS = [
 
 /* ---------- Trabajos (carrusel) ---------- */
 
+/** `alt` describe la foto para Google Imágenes y lectores de pantalla; no se ve en la página. */
 export const TRABAJOS = [
-  { foto: '/trabajos/ajuste-equipos.webp', titulo: 'Revisión y ajuste', texto: 'Equipos y accesorios de la torre' },
-  { foto: '/trabajos/torre-estructura.webp', titulo: 'Mantenimiento de torres', texto: 'Preventivo y correctivo, en altura' },
-  { foto: '/trabajos/camino-al-sitio.webp', titulo: 'Sitios nuevos', texto: 'Obras y ampliaciones, de principio a fin' },
-  { foto: '/fotos/campo-5.webp', titulo: 'Logística', texto: 'Traslado de personal y materiales' },
-  { foto: '/fotos/campo-2.webp', titulo: 'Cable de vida y grilletes', texto: 'Material incluido si la orden lo pide' },
+  {
+    foto: '/trabajos/ajuste-equipos.webp',
+    titulo: 'Revisión y ajuste',
+    texto: 'Equipos y accesorios de la torre',
+    alt: 'Técnico de RYSCOM con casco y chaleco ajusta las unidades de radio de una estación de telecomunicaciones',
+  },
+  {
+    foto: '/trabajos/torre-estructura.webp',
+    titulo: 'Mantenimiento de torres',
+    texto: 'Preventivo y correctivo, en altura',
+    alt: 'Técnico de RYSCOM sube a una torre de telecomunicaciones con antenas para su mantenimiento',
+  },
+  {
+    foto: '/trabajos/camino-al-sitio.webp',
+    titulo: 'Sitios nuevos',
+    texto: 'Obras y ampliaciones, de principio a fin',
+    alt: 'Dos técnicos de RYSCOM caminan hacia las torres de telecomunicaciones en lo alto del cerro',
+  },
+  {
+    foto: '/fotos/campo-5.webp',
+    titulo: 'Logística',
+    texto: 'Traslado de personal y materiales',
+    alt: 'Técnico de RYSCOM midiendo junto a torres de telecomunicaciones',
+  },
+  {
+    foto: '/fotos/campo-2.webp',
+    titulo: 'Cable de vida y grilletes',
+    texto: 'Material incluido si la orden lo pide',
+    alt: 'Técnico de RYSCOM con arnés ajustando una estructura en altura, en la sierra',
+  },
 ];
 
 /* ---------- Contacto ---------- */

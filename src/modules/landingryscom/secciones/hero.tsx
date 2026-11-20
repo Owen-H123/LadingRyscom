@@ -1,5 +1,7 @@
 import { LogIn, RadioTower } from 'lucide-react';
+import { Fragment } from 'react';
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 import { URL_LOGIN } from '@/config';
 import { Costura } from '../componentes/fondos';
 import {
@@ -61,18 +63,28 @@ export function HeroEditorial() {
 
               <h1 className="mt-[1rem] text-[3.4rem] leading-[0.95] text-balance sm:text-[4rem] lg:text-[5.2rem]">
                 {TITULO.map((palabra, i) => (
-                  <span
-                    key={palabra}
-                    className="mr-[0.22em] inline-block overflow-hidden pb-[0.1em] align-bottom last:mr-0"
-                  >
+                  <Fragment key={palabra}>
+                    {/* Espacio real entre palabras para que Google lea «Mantenemos lo que…» y no
+                        «Mantenemosloque…». Mide cero: la separación visible la da el margen. */}
+                    {i > 0 && <span className="text-[0px]"> </span>}
                     <span
-                      className="hero-palabra inline-block"
-                      style={{ animationDelay: `${250 + i * 110}ms` }}
+                      className={cn(
+                        'inline-block overflow-hidden pb-[0.1em] align-bottom',
+                        i < TITULO.length - 1 && 'mr-[0.22em]',
+                      )}
                     >
-                      {palabra}
+                      <span
+                        className="hero-palabra inline-block"
+                        style={{ animationDelay: `${250 + i * 110}ms` }}
+                      >
+                        {palabra}
+                      </span>
                     </span>
-                  </span>
+                  </Fragment>
                 ))}
+                {/* Solo para Google y lectores de pantalla: la frase clave de búsqueda dentro del
+                    único H1. No se ve ni ocupa lugar (sr-only). */}
+                <span className="sr-only"> Mantenimiento de torres de telecomunicaciones en Perú</span>
               </h1>
 
               <div className="mt-[1.618rem] flex flex-col gap-[1.618rem] md:mt-[2.618rem]">
