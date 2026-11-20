@@ -1,4 +1,4 @@
-// Genera los fondos desenfocados de las secciones (Apertura, Declaración, Servicios, Trabajos).
+// Genera los fondos desenfocados de las secciones (Apertura, Declaración, Servicios).
 // Uso: pnpm generar:fondos
 //
 // Antes el navegador desenfocaba las fotos en vivo con CSS (blur 32px + brillo + saturación) sobre
@@ -23,7 +23,6 @@ const FONDOS = [
   { src: 'public/fotos/hero.webp', brillo: 0.3, sigma: { movil: 70.7, tablet: 45.7, escritorio: 32 } },
   { src: 'public/trabajos/torre-estructura.webp', brillo: 0.4, sigma: { movil: 47.6, tablet: 39.4, escritorio: 23 } },
   { src: 'public/trabajos/ajuste-equipos.webp', brillo: 0.4, sigma: { movil: 29.4, tablet: 38, escritorio: 23 } },
-  { src: 'public/trabajos/torre-trabajo-en-altura.webp', brillo: 0.32, sigma: { movil: 45.9, tablet: 40.4, escritorio: 23 } },
 ];
 
 // Matriz de saturate() de CSS (Filter Effects, feColorMatrix type="saturate").
