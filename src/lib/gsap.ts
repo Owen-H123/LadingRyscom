@@ -16,12 +16,18 @@ export const sinMovimiento = () =>
 export let suavizado: ScrollSmoother | undefined;
 
 /**
+ * Segundos que tarda el scroll suave en alcanzar la posición de la rueda. Más alto = más «arrastre»
+ * (la página arranca tarde y luego corre). 0 = scroll normal del navegador, sin retraso.
+ */
+const SUAVIDAD: number = 0;
+
+/**
  * Activa el scroll suave sobre #smooth-wrapper y #smooth-content, y hace que los enlaces
  * «#sección» se deslicen hasta su destino. Debe llamarse ANTES de crear cualquier ScrollTrigger.
  * Devuelve la función que lo desmonta.
  */
 export function crearSuavizado(): () => void {
-  if (sinMovimiento()) {
+  if (sinMovimiento() || SUAVIDAD === 0) {
     // Sin scroll suave, los enlaces internos usan el desplazamiento nativo.
     document.documentElement.classList.add('scroll-smooth');
     return () => document.documentElement.classList.remove('scroll-smooth');
@@ -30,7 +36,7 @@ export function crearSuavizado(): () => void {
   const smoother = ScrollSmoother.create({
     wrapper: '#smooth-wrapper',
     content: '#smooth-content',
-    smooth: 1.1,
+    smooth: SUAVIDAD,
   });
   suavizado = smoother;
 
