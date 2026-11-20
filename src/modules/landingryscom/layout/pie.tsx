@@ -35,10 +35,10 @@ export function Pie() {
         aria-hidden
         className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(to_right,transparent,var(--primary)_50%,transparent)] opacity-70"
       />
-      {/* Resplandor naranja muy suave detrás de la marca. */}
+      {/* Resplandor naranja muy suave detrás de la marca. Degradado y no blur(): no pesa al hacer scroll. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-40 -left-40 size-[32rem] rounded-full bg-primary/10 blur-[120px]"
+        className="pointer-events-none absolute -top-[22rem] -left-[22rem] size-[56rem] bg-[radial-gradient(closest-side,rgba(255,163,26,0.1),rgba(255,163,26,0.04)_55%,transparent)]"
       />
 
       <div className="relative mx-auto max-w-6xl px-4 pt-16 pb-10 md:px-6 md:pt-24">
