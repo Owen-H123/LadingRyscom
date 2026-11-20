@@ -16,24 +16,43 @@ export function BarraSuperior() {
   const [movido, setMovido] = useState(false);
   const [sobreClaro, setSobreClaro] = useState(false);
 
-  // Cada cuadro: si la barra pasa sobre una sección clara ([data-claro]), cambia a cristal claro
-  // con texto oscuro. Se mira por cuadro porque el scroll suave mueve el contenido después del scroll.
+  // Barra compacta en cuanto se baja un poco.
   useEffect(() => {
-    let cuadro = 0;
-    const revisar = () => {
-      setMovido(window.scrollY > 24);
+    const revisar = () => setMovido(window.scrollY > 24);
+    revisar();
+    window.addEventListener('scroll', revisar, { passive: true });
+    return () => window.removeEventListener('scroll', revisar);
+  }, []);
+
+  // Si la barra pasa sobre una sección clara ([data-claro]), cambia a cristal claro con texto
+  // oscuro. Un IntersectionObserver vigila una franja de 1 px a la altura de la barra (y = 40 px):
+  // el navegador avisa solo cuando una sección clara entra o sale de esa franja, también con el
+  // scroll suave (que mueve el contenido con transform). Antes se medía todo en cada fotograma, y
+  // eso trababa la animación de entrada y el scroll.
+  useEffect(() => {
+    let observador: IntersectionObserver | undefined;
+    const encima = new Set<Element>();
+    const vigilar = () => {
+      observador?.disconnect();
+      encima.clear();
       const y = 40;
-      const claras = document.querySelectorAll<HTMLElement>('[data-claro]');
-      let encima = false;
-      claras.forEach((el) => {
-        const r = el.getBoundingClientRect();
-        if (r.top <= y && r.bottom >= y) encima = true;
-      });
-      setSobreClaro(encima);
-      cuadro = requestAnimationFrame(revisar);
+      observador = new IntersectionObserver(
+        (entradas) => {
+          entradas.forEach((e) => (e.isIntersecting ? encima.add(e.target) : encima.delete(e.target)));
+          setSobreClaro(encima.size > 0);
+        },
+        { rootMargin: `-${y}px 0px -${Math.max(0, window.innerHeight - y - 1)}px 0px` },
+      );
+      document.querySelectorAll('[data-claro]').forEach((el) => observador!.observe(el));
     };
-    cuadro = requestAnimationFrame(revisar);
-    return () => cancelAnimationFrame(cuadro);
+    // Las secciones se montan después de la barra (cuando el scroll suave está listo).
+    const inicio = requestAnimationFrame(vigilar);
+    window.addEventListener('resize', vigilar);
+    return () => {
+      cancelAnimationFrame(inicio);
+      window.removeEventListener('resize', vigilar);
+      observador?.disconnect();
+    };
   }, []);
 
   const claro = abierto || sobreClaro;
