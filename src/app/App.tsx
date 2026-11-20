@@ -34,9 +34,12 @@ function Contenido() {
 /**
  * La landing completa. El scroll suave debe existir ANTES que cualquier animación atada al
  * scroll: por eso el contenido solo se monta cuando ya está listo.
+ *
+ * `prerenderizado` solo se usa al compilar (src/prerender.tsx): pinta todo el contenido de una vez
+ * para dejarlo escrito en el HTML que leen Google y las redes. En el navegador no se pasa.
  */
-export function App() {
-  const [listo, setListo] = useState(false);
+export function App({ prerenderizado = false }: { prerenderizado?: boolean }) {
+  const [listo, setListo] = useState(prerenderizado);
   useLayoutEffect(() => {
     const deshacer = crearSuavizado();
     setListo(true);
