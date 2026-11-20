@@ -75,8 +75,10 @@ export function BarraSuperior() {
             {/* El logo ya es transparente: va sin caja. Sobre la foto, un contorno blanco fino
                 lo separa del fondo (las letras son azul oscuro); sobre el cristal claro no hace falta. */}
             <img
-              src="/ryscom-logo.png"
+              src="/ryscom-logo.webp"
               alt="RYSCOM · Mantenimiento y Construcción"
+              width={161}
+              height={108}
               className={cn(
                 'h-9 w-auto transition-[filter] duration-500 md:h-10',
                 !claro &&

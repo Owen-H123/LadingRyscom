@@ -10,7 +10,9 @@ export function Pie() {
           {/* El logo tiene fondo transparente: va dentro de un cuadro blanco para que se lea. */}
           <div className="inline-block rounded-2xl bg-white p-3">
             <img
-              src="/ryscom-logo.png"
+              src="/ryscom-logo.webp"
+              width={161}
+              height={108}
               alt="RYSCOM · Mantenimiento y Construcción"
               className="block h-12 w-auto"
             />
